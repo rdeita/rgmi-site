@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0F1B2D" />
+<title>Artículos — Rafael Martínez De Ita</title>
+<meta name="description" content="Perspectivas sobre empresas familiares, sucesión, gobierno corporativo y dirección estratégica." />
+<link rel="icon" type="image/png" href="assets/escudo-marino.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner container">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/escudo-marino.png" alt="RMI" class="nav-logo" />
+      <span class="nav-name">Rafael Martínez De Ita</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#sobre" data-i18n="nav.about">Sobre mí</a></li>
+      <li><a href="index.html#practica" data-i18n="nav.practice">Práctica</a></li>
+      <li><a href="index.html#modelo" data-i18n="nav.method">Modelo</a></li>
+      <li><a href="index.html#trayectoria" data-i18n="nav.path">Trayectoria</a></li>
+      <li><a href="articulos.html" data-i18n="nav.articles">Artículos</a></li>
+      <li><a href="index.html#contacto" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang-toggle" id="langToggle">
+        <span class="lang-current">ES</span>
+        <span class="lang-divider">·</span>
+        <span class="lang-other">EN</span>
+      </button>
+      <button class="nav-burger" id="navBurger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="eyebrow" data-i18n="articles.eyebrow">PERSPECTIVAS</div>
+    <h1><em data-i18n="articles.title">Artículos y notas.</em></h1>
+  </div>
+</header>
+
+<section class="section section-bone">
+  <div class="container">
+
+    <div class="articles-toolbar">
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="searchInput" data-i18n-placeholder="articles.search" placeholder="Buscar artículos…" />
+      </div>
+      <div class="category-filters">
+        <button class="cat-chip active" data-cat="all" data-i18n="articles.filter.all">Todos</button>
+        <button class="cat-chip" data-cat="Empresas Familiares">Empresas Familiares</button>
+        <button class="cat-chip" data-cat="Sucesión">Sucesión</button>
+        <button class="cat-chip" data-cat="Gobierno Corporativo">Gobierno Corporativo</button>
+        <button class="cat-chip" data-cat="Estrategia">Estrategia</button>
+        <button class="cat-chip" data-cat="Derecho Corporativo">Derecho Corporativo</button>
+        <button class="cat-chip" data-cat="Consejería">Consejería</button>
+      </div>
+    </div>
+
+    <div class="articles-list" id="articlesList">
+      <div class="articles-loading" data-i18n="articles.loading">Cargando artículos…</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/monograma-marino.png" alt="RMI" class="footer-logo" />
+        <div>
+          <div class="footer-name">Rafael Martínez De Ita</div>
+          <div class="footer-tag" data-i18n="footer.tag">Dirección Estratégica · Empresas Familiares</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#sobre" data-i18n="nav.about">Sobre mí</a>
+        <a href="index.html#practica" data-i18n="nav.practice">Práctica</a>
+        <a href="index.html#modelo" data-i18n="nav.method">Modelo</a>
+        <a href="articulos.html" data-i18n="nav.articles">Artículos</a>
+        <a href="aviso-privacidad.html" data-i18n="footer.privacy">Aviso de Privacidad</a>
+      </div>
+      <div class="footer-meta">
+        <div data-i18n="footer.location">Ciudad de México · Atención a toda la República</div>
+        <div class="footer-copy">© <span id="year"></span> Rafael Martínez De Ita. <span data-i18n="footer.rights">Todos los derechos reservados.</span></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script src="js/articulos.js"></script>
+</body>
+</html>

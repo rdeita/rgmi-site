@@ -1,0 +1,95 @@
+# ═══════════════════════════════════════════════════════════
+# Configuración de Decap CMS — rgmi.mx
+# Panel de edición de artículos en https://rgmi.mx/admin
+# ═══════════════════════════════════════════════════════════
+
+# Backend: dónde se guardan los artículos
+# (REEMPLAZAR "TU_USUARIO" por tu usuario de GitHub al desplegar)
+backend:
+  name: github
+  repo: TU_USUARIO/rgmi-site         # ← se actualiza al crear el repo
+  branch: main
+  base_url: https://decap-proxy-rgmi.workers.dev   # ← Cloudflare Worker (opcional, ver INSTALACION.md)
+
+# Para edición local (desarrollo) puedes usar:
+# local_backend: true
+
+# Carpeta donde se suben las imágenes del editor
+media_folder: "assets/articulos"
+public_folder: "/assets/articulos"
+
+# Idioma del panel
+locale: 'es'
+
+# Pantalla de bienvenida
+site_url: https://rgmi.mx
+display_url: https://rgmi.mx
+logo_url: https://rgmi.mx/assets/escudo-marino.png
+
+# ─── Colecciones ───
+collections:
+  - name: "articulos"
+    label: "Artículos"
+    label_singular: "Artículo"
+    folder: "content/articulos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{date | date('DD/MM/YYYY')}}"
+    sortable_fields: ['date', 'title']
+    view_filters:
+      - label: "Empresas Familiares"
+        field: category
+        pattern: 'Empresas Familiares'
+      - label: "Sucesión"
+        field: category
+        pattern: 'Sucesión'
+      - label: "Gobierno Corporativo"
+        field: category
+        pattern: 'Gobierno Corporativo'
+      - label: "Estrategia"
+        field: category
+        pattern: 'Estrategia'
+      - label: "Derecho Corporativo"
+        field: category
+        pattern: 'Derecho Corporativo'
+      - label: "Consejería"
+        field: category
+        pattern: 'Consejería'
+
+    fields:
+      - { label: "Título", name: "title", widget: "string", hint: "Título del artículo (será el H1)" }
+      - { label: "Resumen", name: "summary", widget: "text", hint: "1-2 oraciones que resuman el artículo. Aparece en la lista y al inicio." }
+      - { label: "Fecha de publicación", name: "date", widget: "datetime", default: "" }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - "Empresas Familiares"
+          - "Sucesión"
+          - "Gobierno Corporativo"
+          - "Estrategia"
+          - "Derecho Corporativo"
+          - "Consejería"
+      - label: "Etiquetas"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Palabras clave separadas (ej. protocolo familiar, BSC, plan de sucesión)"
+      - label: "Idioma"
+        name: "lang"
+        widget: "select"
+        options:
+          - { label: "Español", value: "es" }
+          - { label: "English", value: "en" }
+        default: "es"
+      - label: "Imagen destacada (opcional)"
+        name: "featured_image"
+        widget: "image"
+        required: false
+        hint: "Imagen que aparece arriba del artículo. Recomendado: 1200×630 px."
+      - label: "Contenido"
+        name: "body"
+        widget: "markdown"
+        hint: "Escribe aquí. Puedes usar negritas, listas, citas, encabezados, imágenes, enlaces."

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guía de Instalación — rgmi.mx</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0F1B2D;
+    --ink-soft: #2A3850;
+    --ink-muted: #6B7280;
+    --bone: #F4F0E8;
+    --bone-soft: #FAF7F1;
+    --paper: #FFFFFF;
+    --gold: #B08C4A;
+    --gold-soft: #C9A86A;
+    --line: #D9D2C4;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --serif-text: 'Lora', Georgia, serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--bone);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header */
+  .doc-header {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 4rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 70% 20%, rgba(176,140,74,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(176,140,74,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .doc-header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .doc-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .doc-title {
+    font-family: var(--serif);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .doc-title em { font-style: italic; color: var(--gold-soft); }
+  .doc-subtitle {
+    font-family: var(--serif-text);
+    font-size: 1.15rem;
+    color: rgba(244,240,232,0.8);
+    font-style: italic;
+    max-width: 600px;
+  }
+
+  /* Container */
+  .doc {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+    background: var(--paper);
+    margin-top: -2rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 50px -25px rgba(15,27,45,0.2);
+  }
+
+  /* Quick summary box */
+  .summary-box {
+    background: linear-gradient(135deg, var(--bone) 0%, var(--bone-soft) 100%);
+    border-left: 3px solid var(--gold);
+    padding: 1.75rem 2rem;
+    margin: 2.5rem 0;
+    font-family: var(--serif-text);
+  }
+  .summary-box p { margin-bottom: 0.5rem; }
+  .summary-box ol { margin: 0.75rem 0 0.75rem 1.5rem; }
+  .summary-box li { margin-bottom: 0.4rem; }
+  .summary-box .check { color: var(--gold); font-weight: 600; }
+
+  /* Typography */
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  h2 {
+    font-size: 2rem;
+    margin: 3.5rem 0 1.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  h2:first-child { border-top: none; padding-top: 0; }
+  h3 {
+    font-size: 1.5rem;
+    margin: 2.25rem 0 1rem;
+    color: var(--ink);
+  }
+  h4 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--gold);
+  }
+  p { margin-bottom: 1.15rem; font-size: 1rem; color: var(--ink-soft); }
+  ul, ol { margin: 0.5rem 0 1.5rem 1.5rem; }
+  li { margin-bottom: 0.35rem; color: var(--ink-soft); }
+  strong { color: var(--ink); font-weight: 600; }
+  em { font-style: italic; }
+  a { color: var(--gold); border-bottom: 1px solid currentColor; }
+  a:hover { color: var(--ink); }
+  hr { border: none; border-top: 1px solid var(--line); margin: 3rem 0; }
+
+  /* Code */
+  code {
+    font-family: var(--mono);
+    background: var(--bone);
+    padding: 0.15rem 0.4rem;
+    font-size: 0.88em;
+    color: var(--ink);
+    border-radius: 3px;
+  }
+  pre {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  th {
+    background: var(--bone);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  td code { font-size: 0.82rem; }
+
+  /* Step boxes */
+  .step {
+    background: var(--bone-soft);
+    padding: 2rem 2.25rem;
+    margin: 2.5rem 0;
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid var(--line);
+  }
+  .step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+  }
+  .step h2 {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 1.65rem;
+    color: var(--ink);
+  }
+  .step .duration {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-left: 0.75rem;
+    vertical-align: middle;
+  }
+
+  /* Callouts */
+  .callout {
+    background: rgba(176,140,74,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .callout.warn {
+    background: rgba(220,53,69,0.04);
+    border-left-color: #c44550;
+  }
+  .callout strong { color: var(--ink); }
+  .callout-icon { font-weight: 700; color: var(--gold); margin-right: 0.5rem; }
+
+  /* Checkmark for completion */
+  .done {
+    display: inline-block;
+    background: rgba(46,125,50,0.1);
+    color: #2E7D32;
+    padding: 0.65rem 1rem;
+    border-left: 3px solid #2E7D32;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+  .done strong { color: #2E7D32; }
+
+  /* Print styles */
+  @media print {
+    body { background: white; }
+    .doc { box-shadow: none; max-width: 100%; padding: 0; margin: 0; }
+    .doc-header { background: white; color: var(--ink); }
+    .doc-header::before { display: none; }
+    .doc-title em, .doc-eyebrow { color: var(--gold); }
+    .doc-subtitle { color: var(--ink-soft); }
+    pre { background: var(--bone); color: var(--ink); border: 1px solid var(--line); }
+    a { color: var(--ink); }
+    h2 { page-break-after: avoid; }
+    .step, .summary-box, .callout { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 700px) {
+    .doc { padding: 2.5rem 1.5rem; }
+    .step { padding: 1.5rem; }
+    table { font-size: 0.88rem; }
+    th, td { padding: 0.6rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="doc-eyebrow">GUÍA DE INSTALACIÓN</div>
+    <h1 class="doc-title">Cómo publicar <em>rgmi.mx</em></h1>
+    <p class="doc-subtitle">Pensada para que cualquier persona —sin conocimientos técnicos— pueda dejar el sitio en vivo en 45 minutos.</p>
+  </div>
+</header>
+
+<div class="doc">
+
+<div class="summary-box">
+  <p><strong>Qué vas a hacer (resumen):</strong></p>
+  <ol>
+    <li><strong>Crear cuenta en GitHub</strong> (donde vive el código del sitio) — 5 min</li>
+    <li><strong>Subir el sitio a GitHub</strong> — 10 min</li>
+    <li><strong>Crear cuenta en Cloudflare y desplegar el sitio</strong> — 10 min</li>
+    <li><strong>Conectar tu dominio rgmi.mx desde Akky</strong> — 10 min</li>
+    <li><strong>Configurar el formulario de contacto (Web3Forms)</strong> — 5 min</li>
+    <li><strong>Activar el panel de edición de artículos</strong> — 5 min</li>
+  </ol>
+  <p style="margin-top:1rem;">Al terminar tendrás:</p>
+  <ul>
+    <li><span class="check">✓</span> Tu sitio en vivo en <code>https://rgmi.mx</code></li>
+    <li><span class="check">✓</span> Un panel en <code>https://rgmi.mx/admin</code> para publicar artículos como si fuera Word</li>
+    <li><span class="check">✓</span> Formulario de contacto que llega a <code>rafael@rgmi.mx</code></li>
+    <li><span class="check">✓</span> Costo mensual: <strong>$0</strong></li>
+  </ul>
+</div>
+
+<h2>Antes de empezar — Prepara los archivos</h2>
+
+<p>Antes de hacer nada técnico, asegúrate de tener listos estos archivos en la carpeta <code>rgmi-site/</code>:</p>
+
+<h3>1. Tu foto profesional</h3>
+<p>Guarda la foto que me enviaste como:</p>
+<pre><code>rgmi-site/assets/rafael-foto.jpg</code></pre>
+
+<div class="callout">
+  <strong>💡 Tip de optimización:</strong> Si la foto pesa más de 500 KB, comprímela en <a href="https://tinyjpg.com" target="_blank">tinyjpg.com</a> (gratis, arrastras y bajas la versión optimizada). Esto hace que el sitio cargue rápido en celulares.
+</div>
+
+<h3>2. PDF del Modelo RMI</h3>
+<p>Ya está en <code>rgmi-site/assets/modelo-rmi.pdf</code> — listo. ✅</p>
+
+<h3>3. Logos</h3>
+<p>Ya están copiados:</p>
+<ul>
+  <li><code>assets/escudo-marino.png</code> (favicon)</li>
+  <li><code>assets/monograma-marino.png</code> (footer)</li>
+  <li><code>assets/monograma-chrome.png</code> (hero / portada)</li>
+</ul>
+
+<!-- ─────── PASO 1 ─────── -->
+<div class="step">
+<h2>Paso 1 · Crear cuenta en GitHub <span class="duration">5 MIN</span></h2>
+<p>GitHub es donde se guarda el código de tu sitio. Es gratuito.</p>
+<ol>
+  <li>Ve a <a href="https://github.com/signup" target="_blank">github.com/signup</a></li>
+  <li>Email: <code>rafael@rgmi.mx</code> (o el que prefieras)</li>
+  <li>Username: te sugiero algo limpio como <code>rmartinezdeita</code> o <code>rgmi-mx</code></li>
+  <li>Verifica el correo</li>
+  <li>Plan: <strong>Free</strong> (suficiente para tu sitio)</li>
+</ol>
+<div class="done">✅ <strong>Listo cuando:</strong> Puedes entrar a github.com y ver tu perfil.</div>
+</div>
+
+<!-- ─────── PASO 2 ─────── -->
+<div class="step">
+<h2>Paso 2 · Subir el sitio a GitHub <span class="duration">10 MIN</span></h2>
+
+<h3>2a. Crear el repositorio</h3>
+<ol>
+  <li>Estando logueado en GitHub, haz clic en el botón <strong>"+"</strong> arriba a la derecha → <strong>"New repository"</strong></li>
+  <li><strong>Repository name:</strong> <code>rgmi-site</code></li>
+  <li><strong>Description:</strong> <code>Sitio web de Rafael Martínez De Ita</code></li>
+  <li><strong>Privacy:</strong> Public <em>(necesario para que Decap CMS funcione gratis)</em></li>
+  <li><strong>NO marques</strong> "Add a README", ni ".gitignore", ni "Add a license"</li>
+  <li>Botón <strong>"Create repository"</strong></li>
+</ol>
+
+<h3>2b. Subir los archivos (sin terminal)</h3>
+<p>GitHub te mostrará una pantalla con varias opciones. Busca el link <strong>"uploading an existing file"</strong> (en azul).</p>
+<ol>
+  <li>Haz clic en ese link</li>
+  <li>Se abre una pantalla con un área para arrastrar archivos</li>
+  <li>Abre el explorador de Windows y ve a <code>C:\Users\rafam\OneDrive\Documentos\Claude\Code\rgmi-site</code></li>
+  <li>Selecciona <strong>TODO</strong> el contenido de la carpeta (Ctrl+A) y <strong>arrástralo</strong> al área de GitHub</li>
+</ol>
+<div class="callout warn">
+  <strong>⚠ Importante:</strong> arrastra el <em>contenido</em> de la carpeta, no la carpeta completa. Es decir: archivos <code>index.html</code>, <code>css/</code>, <code>js/</code>, <code>assets/</code>, etc. directamente.
+</div>
+<ol start="5">
+  <li>Espera a que suba (puede tardar 1-3 minutos por las imágenes)</li>
+  <li>Abajo, en "Commit changes", deja el mensaje por defecto y haz clic <strong>"Commit changes"</strong></li>
+</ol>
+<div class="done">✅ <strong>Listo cuando:</strong> Ves todos los archivos del sitio listados en tu repo en GitHub.</div>
+</div>
+
+<!-- ─────── PASO 3 ─────── -->
+<div class="step">
+<h2>Paso 3 · Desplegar en Cloudflare Pages <span class="duration">10 MIN</span></h2>
+
+<h3>3a. Crear cuenta Cloudflare</h3>
+<ol>
+  <li>Ve a <a href="https://dash.cloudflare.com/sign-up" target="_blank">dash.cloudflare.com/sign-up</a></li>
+  <li>Email: el mismo que GitHub o cualquiera</li>
+  <li>Verifica el correo</li>
+</ol>
+
+<h3>3b. Conectar el repo de GitHub</h3>
+<ol>
+  <li>En el panel de Cloudflare, busca <strong>"Workers & Pages"</strong> en el menú lateral izquierdo</li>
+  <li>Haz clic en <strong>"Create application"</strong> → pestaña <strong>"Pages"</strong> → <strong>"Connect to Git"</strong></li>
+  <li>Conecta tu cuenta de GitHub (te pedirá autorizar — di que sí)</li>
+  <li>Selecciona el repositorio <strong><code>rgmi-site</code></strong></li>
+  <li><strong>Begin setup</strong></li>
+</ol>
+
+<h3>3c. Configurar el deployment</h3>
+<table>
+  <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Project name</td><td><code>rgmi</code> (o el que prefieras)</td></tr>
+    <tr><td>Production branch</td><td><code>main</code></td></tr>
+    <tr><td>Framework preset</td><td><code>None</code></td></tr>
+    <tr><td>Build command</td><td><em>déjalo vacío</em></td></tr>
+    <tr><td>Build output directory</td><td><em>déjalo vacío</em></td></tr>
+  </tbody>
+</table>
+<ol start="6">
+  <li>Botón <strong>"Save and Deploy"</strong></li>
+  <li>Espera 1-2 minutos. Cuando aparezca el ✅ verde con "Success", tu sitio ya está vivo en una URL temporal tipo <code>rgmi.pages.dev</code>.</li>
+</ol>
+<div class="done">✅ <strong>Probá esa URL en tu celular y en tu compu</strong> — debe verse perfecto.</div>
+</div>
+
+<!-- ─────── PASO 4 ─────── -->
+<div class="step">
+<h2>Paso 4 · Conectar rgmi.mx (Akky) <span class="duration">10 MIN</span></h2>
+
+<h3>4a. Agregar el dominio en Cloudflare</h3>
+<ol>
+  <li>En la página de tu proyecto en Cloudflare Pages, ve a la pestaña <strong>"Custom domains"</strong></li>
+  <li>Botón <strong>"Set up a custom domain"</strong></li>
+  <li>Escribe <strong><code>rgmi.mx</code></strong> y haz clic <strong>"Continue"</strong></li>
+  <li>Cloudflare te mostrará <strong>dos registros DNS</strong> que tienes que copiar a Akky:</li>
+</ol>
+<pre><code>Tipo: CNAME
+Nombre: rgmi.mx (o @)
+Valor: rgmi.pages.dev</code></pre>
+<pre><code>Tipo: CNAME
+Nombre: www
+Valor: rgmi.pages.dev</code></pre>
+<p><strong>Mantén esa pantalla abierta — vas a copiar/pegar de aquí.</strong></p>
+
+<h3>4b. Editar DNS en Akky</h3>
+<ol>
+  <li>Ve a <a href="https://www.akky.mx" target="_blank">akky.mx</a> y haz login con tu cuenta</li>
+  <li>Panel → <strong>"Mis dominios"</strong> → <strong><code>rgmi.mx</code></strong></li>
+  <li>Busca la sección <strong>"Administrar DNS"</strong> o <strong>"Zona DNS"</strong></li>
+  <li>Vas a agregar <strong>dos registros</strong> nuevos:</li>
+</ol>
+
+<p><strong>Registro 1 (la raíz del dominio):</strong></p>
+<table>
+  <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Tipo</td><td><code>CNAME</code> (si Akky no permite CNAME en raíz, ver alternativa abajo)</td></tr>
+    <tr><td>Nombre / Host</td><td><code>@</code> o vacío (significa la raíz <code>rgmi.mx</code>)</td></tr>
+    <tr><td>Valor / Destino</td><td><code>rgmi.pages.dev</code></td></tr>
+    <tr><td>TTL</td><td><code>3600</code></td></tr>
+  </tbody>
+</table>
+
+<p><strong>Registro 2 (el subdominio www):</strong></p>
+<table>
+  <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Tipo</td><td><code>CNAME</code></td></tr>
+    <tr><td>Nombre / Host</td><td><code>www</code></td></tr>
+    <tr><td>Valor / Destino</td><td><code>rgmi.pages.dev</code></td></tr>
+    <tr><td>TTL</td><td><code>3600</code></td></tr>
+  </tbody>
+</table>
+
+<ol start="5"><li><strong>Guardar</strong> o <strong>Aplicar cambios</strong>.</li></ol>
+
+<div class="callout warn">
+  <strong>⚠ Si Akky NO permite CNAME en la raíz</strong> (es común en registradores antiguos), usa esta opción alternativa: en lugar del registro CNAME en <code>@</code>, agrega <strong>dos registros A</strong> apuntando a las IPs de Cloudflare. Cloudflare las muestra en la misma pantalla — copia las dos IPs.
+  <pre style="margin-top:1rem;"><code>Tipo: A     | Nombre: @    | Valor: [primera IP de Cloudflare]
+Tipo: A     | Nombre: @    | Valor: [segunda IP de Cloudflare]
+Tipo: CNAME | Nombre: www  | Valor: rgmi.pages.dev</code></pre>
+</div>
+
+<h3>4c. Esperar la propagación</h3>
+<ul>
+  <li>Vuelve a Cloudflare. En <strong>Custom domains</strong> debe aparecer <strong>"Active"</strong> con un check verde.</li>
+  <li><strong>Tiempo de propagación:</strong> usualmente 15-30 minutos. A veces hasta 2 horas.</li>
+  <li>Mientras esperas, abre <code>rgmi.mx</code> en una pestaña en modo incógnito.</li>
+</ul>
+<div class="done">✅ <strong>Listo cuando:</strong> <code>https://rgmi.mx</code> te muestra tu sitio con HTTPS automático (candadito verde).</div>
+</div>
+
+<!-- ─────── PASO 5 ─────── -->
+<div class="step">
+<h2>Paso 5 · Configurar el formulario de contacto <span class="duration">5 MIN</span></h2>
+
+<p>El formulario usa <strong>Web3Forms</strong> — gratuito, sin cuenta, sin tarjeta.</p>
+
+<h3>5a. Obtener tu Access Key</h3>
+<ol>
+  <li>Ve a <a href="https://web3forms.com" target="_blank">web3forms.com</a></li>
+  <li>Pega tu correo <code>rafael@rgmi.mx</code> en el campo "Get Access Key"</li>
+  <li>Haz clic en <strong>"Create Access Key"</strong></li>
+  <li>Revisa tu correo — Web3Forms te enviará una clave (texto largo tipo <code>a1b2c3d4-e5f6-...</code>)</li>
+</ol>
+
+<h3>5b. Pegar la clave en el sitio</h3>
+<ol>
+  <li>En GitHub, abre tu repo <code>rgmi-site</code></li>
+  <li>Haz clic en el archivo <strong><code>index.html</code></strong></li>
+  <li>Botón del lápiz ✏️ arriba a la derecha (Edit this file)</li>
+  <li>Usa <strong>Ctrl+F</strong> y busca: <code>REEMPLAZAR_CON_TU_ACCESS_KEY_DE_WEB3FORMS</code></li>
+  <li>Reemplázalo por la clave que te llegó al correo</li>
+  <li>Abajo, <strong>"Commit changes"</strong> → mensaje: "Configurar Web3Forms" → Commit</li>
+  <li>Espera ~30 segundos. Cloudflare reconstruye el sitio automáticamente.</li>
+  <li>Prueba el form en <code>rgmi.mx#contacto</code> — el mensaje debe llegarte a <code>rafael@rgmi.mx</code>.</li>
+</ol>
+<div class="done">✅ <strong>Listo cuando:</strong> te llega un correo de prueba a <code>rafael@rgmi.mx</code>.</div>
+</div>
+
+<!-- ─────── PASO 6 ─────── -->
+<div class="step">
+<h2>Paso 6 · Activar el panel /admin <span class="duration">5 MIN</span></h2>
+
+<p>El panel de Decap CMS necesita autorizar GitHub para guardar artículos.</p>
+
+<h3>6a. Configurar la autenticación</h3>
+<ol>
+  <li>En GitHub: <strong>Settings</strong> (perfil) → <strong>Developer settings</strong> (al fondo del menú izquierdo) → <strong>OAuth Apps</strong> → <strong>"New OAuth App"</strong></li>
+  <li>Llena los campos:</li>
+</ol>
+<table>
+  <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Application name</td><td><code>RGMI Admin</code></td></tr>
+    <tr><td>Homepage URL</td><td><code>https://rgmi.mx</code></td></tr>
+    <tr><td>Authorization callback URL</td><td><code>https://api.netlify.com/auth/done</code></td></tr>
+  </tbody>
+</table>
+<ol start="3">
+  <li>Botón <strong>"Register application"</strong></li>
+  <li>Verás un <strong>Client ID</strong> y un <strong>Client Secret</strong>. Copia ambos.</li>
+</ol>
+
+<h3>6b. Conectar Decap con tu repo</h3>
+<p>Edita el archivo <code>admin/config.yml</code> en GitHub:</p>
+<ol>
+  <li>En tu repo, ve a <code>admin/config.yml</code> → ✏️</li>
+  <li>Reemplaza <code>TU_USUARIO/rgmi-site</code> con tu usuario real, ej. <code>rmartinezdeita/rgmi-site</code></li>
+  <li>Para la primera vez, <strong>comenta</strong> la línea <code>base_url:</code> con un <code>#</code> al inicio:</li>
+</ol>
+<pre><code>backend:
+  name: github
+  repo: rmartinezdeita/rgmi-site
+  branch: main
+  # base_url: https://decap-proxy-rgmi.workers.dev   ← COMENTADO</code></pre>
+<ol start="4"><li>Commit changes.</li></ol>
+
+<h3>6c. Probar el panel</h3>
+<ol>
+  <li>Ve a <code>https://rgmi.mx/admin</code></li>
+  <li>Botón <strong>"Login with GitHub"</strong></li>
+  <li>Te pide autorizar — autoriza</li>
+  <li>¡Ya estás dentro del panel!</li>
+  <li>Botón <strong>"New Artículo"</strong>, escribe algo, <strong>"Publish"</strong> → en 30 segundos aparece en <code>rgmi.mx/articulos</code>.</li>
+</ol>
+<div class="done">✅ <strong>Listo cuando:</strong> puedes publicar un artículo desde <code>/admin</code> y se ve en <code>/articulos</code>.</div>
+<div class="callout">
+  💡 <strong>Si tienes problemas con la autenticación de GitHub</strong>, la solución más limpia es desplegar un pequeño "proxy" en Cloudflare Workers. Es opcional. Avísame y te paso esos pasos extra (15 min).
+</div>
+</div>
+
+<hr/>
+
+<h2>📝 Cómo publicar un artículo (uso diario)</h2>
+<ol>
+  <li>Ve a <code>https://rgmi.mx/admin</code></li>
+  <li>Login con GitHub</li>
+  <li><strong>"New Artículo"</strong></li>
+  <li>Llena:
+    <ul>
+      <li><strong>Título</strong> del artículo</li>
+      <li><strong>Resumen</strong> (1-2 líneas que enganchen al lector)</li>
+      <li><strong>Fecha</strong> (la actual)</li>
+      <li><strong>Categoría</strong> (selecciona de la lista)</li>
+      <li><strong>Etiquetas</strong> (palabras clave)</li>
+      <li><strong>Idioma</strong> (Español o English)</li>
+      <li><strong>Imagen destacada</strong> (opcional, drag-drop)</li>
+      <li><strong>Contenido:</strong> editor visual tipo Word</li>
+    </ul>
+  </li>
+  <li><strong>"Publish"</strong> → en menos de 1 minuto aparece publicado.</li>
+</ol>
+
+<p>Los artículos se indexan automáticamente:</p>
+<ul>
+  <li>Aparecen en <code>rgmi.mx/articulos</code> con filtros por categoría</li>
+  <li>Los últimos 3 aparecen también en la home</li>
+  <li>Buscador integrado por título, resumen y etiquetas</li>
+  <li>Botón de compartir en LinkedIn, X, correo</li>
+</ul>
+
+<h2>🛠️ Editar el contenido del sitio (no artículos)</h2>
+<p>Si quieres cambiar el tagline, una credencial, un caso, etc., los textos están en <strong><code>js/i18n.js</code></strong> — todos los textos del sitio en ES y EN.</p>
+<p>Editar ese archivo en GitHub (con el lápiz ✏️) → Commit → en 30 segundos aparece actualizado.</p>
+<div class="callout warn">
+  ⚠ Cuida la sintaxis de comillas y comas. Si te da miedo, dime qué quieres cambiar y lo hago yo.
+</div>
+
+<h2>🆘 Soporte</h2>
+<p>Si algo no funciona:</p>
+<ol>
+  <li><strong>Sitio caído:</strong> revisa que GitHub muestre tu último commit y que Cloudflare diga "Success" en sus Deployments.</li>
+  <li><strong>DNS no propaga después de 4h:</strong> revisa en <a href="https://www.whatsmydns.net/" target="_blank">whatsmydns.net</a> que <code>rgmi.mx</code> apunte a Cloudflare.</li>
+  <li><strong>Form no envía:</strong> revisa que la Access Key esté bien pegada en <code>index.html</code> (sin espacios extra).</li>
+  <li><strong>Cualquier otra cosa:</strong> avísame con el mensaje de error y lo resolvemos.</li>
+</ol>
+
+<hr/>
+
+<p style="text-align:center; color:var(--ink-muted); font-style:italic; font-family:var(--serif-text); font-size:0.95rem;">
+  Hecho con cuidado para Rafael Martínez De Ita · Mayo 2026
+</p>
+
+</div>
+
+</body>
+</html>
