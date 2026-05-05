@@ -1,9 +1,6 @@
 # ═══════════════════════════════════════════════════════════
-# Cloudflare Pages Redirects
+# Cloudflare Pages Redirects (solo URLs relativas)
 # ═══════════════════════════════════════════════════════════
-
-# Forzar dominio canónico (rgmi.mx, no www.)
-https://www.rgmi.mx/*  https://rgmi.mx/:splat  301!
 
 # Atajo amigable para artículos individuales
 /blog/*  /articulo.html?slug=:splat  302
